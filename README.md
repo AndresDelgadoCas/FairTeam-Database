@@ -1,4 +1,4 @@
-# FairTeam Database
+# FairTeam Database 
 
 Base de datos del proyecto **FairTeam**, una plataforma orientada a la formación de equipos académicos equilibrados mediante información de estudiantes, calificaciones, habilidades, disponibilidad y preferencias.
 
