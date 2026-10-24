@@ -18,7 +18,7 @@ Este repositorio contiene el esquema SQL de la base de datos utilizada por el ba
 
 ## Estructura de la base de datos
 
-La base de datos contiene 13 tablas principales:
+El esquema base contiene las 13 tablas académicas principales:
 
 | Tabla | Descripción |
 |---|---|
@@ -40,6 +40,8 @@ La base de datos contiene 13 tablas principales:
 
 El archivo `schema.sql` contiene las instrucciones SQL para crear la estructura de la base de datos, incluyendo tablas, relaciones, restricciones e índices definidos en el esquema.
 
+El backend completa este esquema al arrancar mediante Flyway: crea las tablas de autenticación y evaluación, agrega el aislamiento por docente y repara de forma idempotente el esquema de bases existentes. `migrations/` es una copia documental; `src/main/resources/db/migration/` dentro del repositorio del backend es la fuente que ejecuta Flyway.
+
 ## Instalación y configuración
 
 ### Requisitos previos
@@ -60,9 +62,9 @@ El archivo `schema.sql` contiene las instrucciones SQL para crear la estructura 
 
 3. Abrir el archivo `schema.sql` desde pgAdmin o ejecutarlo con `psql`.
 
-4. Ejecutar el script sobre la base de datos creada para generar las tablas y sus relaciones.
+4. Ejecutar el script solo para preparar el esquema académico inicial de una base nueva. Después, configura el backend para conectarse; Flyway aplicará las migraciones restantes al iniciar.
 
-**Importante:** ejecutar el esquema únicamente en una base de datos nueva o preparada para esta instalación. No volver a ejecutar el script sobre una base de datos que ya contiene la estructura del proyecto sin revisar antes sus efectos.
+**Importante:** no ejecutes `schema.sql` ni los archivos de migración manualmente sobre producción. En una base existente, deja que el backend ejecute Flyway; `schema.sql` solo prepara una base nueva.
 
 ## Integración con el backend
 
