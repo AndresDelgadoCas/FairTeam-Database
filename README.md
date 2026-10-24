@@ -18,13 +18,14 @@ Este repositorio contiene el esquema SQL de la base de datos utilizada por el ba
 
 ## Estructura de la base de datos
 
-El esquema base contiene las 13 tablas académicas principales:
+El modelo actual reúne 13 tablas académicas base y la tabla `courses`, incorporada por Flyway para organizar los grupos docentes:
 
 | Tabla | Descripción |
 |---|---|
-| `students` | Información de los estudiantes. |
+| `courses` | Cursos o grupos docentes, aislados por cuenta. |
+| `students` | Información de los estudiantes, asociada a un curso. |
 | `subjects` | Asignaturas académicas. |
-| `grades` | Calificaciones de los estudiantes. |
+| `grades` | Calificaciones de los estudiantes, asociadas a su curso. |
 | `skills` | Catálogo de habilidades. |
 | `student_skills` | Habilidades asociadas a cada estudiante. |
 | `student_availability` | Disponibilidad de los estudiantes. |
@@ -87,6 +88,3 @@ Las credenciales y los datos privados de conexión se administran mediante varia
 **Proyecto:** FairTeam  
 **Repositorio de base de datos:** [FairTeam-Database](https://github.com/AndresDelgadoCas/FairTeam-Database)  
 **Repositorio del backend:** [Backend-proyect](https://github.com/AndresDelgadoCas/Backend-proyect)
-
-
- 
