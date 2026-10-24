@@ -83,6 +83,10 @@ La base de datos de FairTeam está desplegada en Render mediante un servicio Pos
 
 Las credenciales y los datos privados de conexión se administran mediante variables de entorno. No deben publicarse en este repositorio.
 
+## Decisiones de arquitectura
+
+La base de datos no implementa patrones OO como Factory o Decorator. Su responsabilidad es persistencia relacional: claves foráneas, restricciones, índices, migraciones versionadas e idempotentes y Row Level Security para aislar los datos por docente. La aplicación sigue el límite `Frontend → API backend → PostgreSQL`; el navegador nunca se conecta directamente a la base. Flyway, desde el backend, es el mecanismo que aplica los cambios de esquema.
+
 ## Autoría
 
 **Proyecto:** FairTeam  
