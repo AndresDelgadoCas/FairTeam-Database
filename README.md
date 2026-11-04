@@ -36,6 +36,7 @@ El modelo actual reúne 13 tablas académicas base y la tabla `courses`, incorpo
 | `team_students` | Relación entre equipos y estudiantes. |
 | `workshops` | Talleres de refuerzo académico. |
 | `workshop_recommendations` | Recomendaciones de talleres. |
+| `course_grading_schemes` | Cortes y pesos de cada curso (ej. 30/30/40) para el simulador de notas; aislada por docente (migración V7). |
 
 ## Archivo principal
 
