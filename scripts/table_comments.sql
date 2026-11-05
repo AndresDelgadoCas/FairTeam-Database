@@ -1,0 +1,23 @@
+-- Descriptions stored in the catalog (COMMENT ON). Harmless to re-run; the data dictionary shows them.
+COMMENT ON TABLE teacher_users IS 'Cuentas de docentes. La contraseña se guarda como hash BCrypt.';
+COMMENT ON TABLE courses IS 'Cursos o grupos de cada docente.';
+COMMENT ON TABLE students IS 'Estudiantes de un curso; academic_level se recalcula con el promedio.';
+COMMENT ON TABLE subjects IS 'Asignaturas que califica el docente.';
+COMMENT ON TABLE grades IS 'Notas de 0,0 a 5,0 por estudiante, asignatura y corte.';
+COMMENT ON TABLE skills IS 'Catálogo de habilidades para formar equipos.';
+COMMENT ON TABLE student_skills IS 'Nivel de cada estudiante en una habilidad.';
+COMMENT ON TABLE student_availability IS 'Franjas en que el estudiante puede trabajar en equipo.';
+COMMENT ON TABLE projects IS 'Proyectos para los que se forman equipos.';
+COMMENT ON TABLE project_skill_requirements IS 'Habilidades que necesita cada proyecto.';
+COMMENT ON TABLE student_project_preferences IS 'Con quién prefiere trabajar cada estudiante.';
+COMMENT ON TABLE teams IS 'Equipos generados para un proyecto.';
+COMMENT ON TABLE team_students IS 'Integrantes de cada equipo.';
+COMMENT ON TABLE workshops IS 'Talleres y quizzes de refuerzo generados con IA.';
+COMMENT ON TABLE workshop_recommendations IS 'Talleres sugeridos a estudiantes concretos.';
+COMMENT ON TABLE course_materials IS 'Material de clase subido por el docente para generar talleres.';
+COMMENT ON TABLE course_grading_schemes IS 'Pesos de los cortes de un curso (ej. 30/30/40) para el simulador.';
+COMMENT ON TABLE assignments IS 'Trabajos asignados por el docente.';
+COMMENT ON TABLE assignment_submissions IS 'Entregas de los estudiantes.';
+COMMENT ON TABLE grading_rubrics IS 'Rúbricas de evaluación.';
+COMMENT ON TABLE rubric_criteria IS 'Criterios y pesos de cada rúbrica.';
+COMMENT ON TABLE ai_evaluations IS 'Evaluaciones sugeridas por IA que el docente revisa.';
