@@ -37,8 +37,11 @@ trap restore_source EXIT
 
 echo "-> Copiando datos..."
 set_force "$SOURCE" "NO FORCE"
-pg_dump --no-owner --no-acl --format=custom "$SOURCE" \
-  | pg_restore --no-owner --no-acl --exit-on-error --dbname="$TARGET"
+# Plain SQL through psql so a newer client can load into an older server: pg_dump 17+
+# writes SET transaction_timeout, which PostgreSQL 16 and earlier reject.
+pg_dump --no-owner --no-acl "$SOURCE" \
+  | grep -v '^SET transaction_timeout' \
+  | psql "$TARGET" -q -v ON_ERROR_STOP=1 >/dev/null
 restore_source
 trap - EXIT
 
