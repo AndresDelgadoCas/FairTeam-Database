@@ -37,6 +37,8 @@ El modelo reúne las tablas académicas base y las que agregó Flyway (`courses`
 | `workshops` | Talleres de refuerzo académico. |
 | `workshop_recommendations` | Recomendaciones de talleres. |
 | `course_materials` | Material de clase subido para generar talleres con IA (migración V6). |
+| `attendance_records` | Asistencia por clase: presente, falta, tarde o excusa (migración V8). |
+| `student_interventions` | Apoyos registrados por el docente para cada estudiante (migración V8). |
 | `course_grading_schemes` | Cortes y pesos de cada curso (ej. 30/30/40) para el simulador de notas; aislada por docente (migración V7). |
 
 ## Archivo principal
