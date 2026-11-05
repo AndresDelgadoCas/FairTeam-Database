@@ -44,8 +44,9 @@ jobs:
         run: |
           psql -v ON_ERROR_STOP=1 -d fairteam_ci -c "INSERT INTO teacher_users (full_name, email, password_hash) VALUES ('CI', 'ci@fairteam.test', 'x')"
           psql -v ON_ERROR_STOP=1 -v teacher_email="'ci@fairteam.test'" -d fairteam_ci -f seeds/demo_course.sql
+          teacher_id=$(psql -tAc "SELECT id FROM teacher_users WHERE email = 'ci@fairteam.test'")
           for query in queries/*.sql; do
-            PGOPTIONS="-c app.teacher_id=1" psql -v ON_ERROR_STOP=1 -d fairteam_ci -f "$query" > /dev/null
+            PGOPTIONS="-c app.teacher_id=$teacher_id" psql -v ON_ERROR_STOP=1 -d fairteam_ci -f "$query" > /dev/null
           done
       - name: Copy to a new database
         run: |
