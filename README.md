@@ -1,4 +1,4 @@
-# FairTeam Database 
+# FairTeam Database
 
 Base de datos del proyecto **FairTeam**, una plataforma orientada a la formación de equipos académicos equilibrados mediante información de estudiantes, calificaciones, habilidades, disponibilidad y preferencias. 
 
@@ -18,7 +18,7 @@ Este repositorio contiene el esquema SQL de la base de datos utilizada por el ba
 
 ## Estructura de la base de datos
 
-El modelo actual reúne 13 tablas académicas base y la tabla `courses`, incorporada por Flyway para organizar los grupos docentes:
+El modelo reúne las tablas académicas base y las que agregó Flyway (`courses`, `course_materials`, `course_grading_schemes`). El detalle de cada columna está en el [diccionario de datos](docs/data-dictionary.md) y las relaciones en el [diagrama entidad-relación](docs/er-diagram.md).
 
 | Tabla | Descripción |
 |---|---|
@@ -36,6 +36,7 @@ El modelo actual reúne 13 tablas académicas base y la tabla `courses`, incorpo
 | `team_students` | Relación entre equipos y estudiantes. |
 | `workshops` | Talleres de refuerzo académico. |
 | `workshop_recommendations` | Recomendaciones de talleres. |
+| `course_materials` | Material de clase subido para generar talleres con IA (migración V6). |
 | `course_grading_schemes` | Cortes y pesos de cada curso (ej. 30/30/40) para el simulador de notas; aislada por docente (migración V7). |
 
 ## Archivo principal
