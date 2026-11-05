@@ -66,6 +66,10 @@ WHERE a.student_id = s.id AND s.teacher_id = current_setting('app.teacher_id')::
 
 COMMIT;
 
+-- The teacher setting above was local to the transaction; set it again so the summary is visible.
+SELECT set_config('app.teacher_id', id::text, false) AS docente
+FROM teacher_users WHERE email = :teacher_email \gset
+
 \echo 'Curso demo listo:'
 SELECT c.name AS curso, count(DISTINCT s.id) AS estudiantes, count(g.id) AS notas
 FROM courses c LEFT JOIN students s ON s.course_id = c.id LEFT JOIN grades g ON g.student_id = s.id
