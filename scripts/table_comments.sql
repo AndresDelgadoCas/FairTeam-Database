@@ -21,3 +21,5 @@ COMMENT ON TABLE assignment_submissions IS 'Entregas de los estudiantes.';
 COMMENT ON TABLE grading_rubrics IS 'Rúbricas de evaluación.';
 COMMENT ON TABLE rubric_criteria IS 'Criterios y pesos de cada rúbrica.';
 COMMENT ON TABLE ai_evaluations IS 'Evaluaciones sugeridas por IA que el docente revisa.';
+COMMENT ON TABLE attendance_records IS 'Asistencia por clase: presente, falta, tarde o excusa.';
+COMMENT ON TABLE student_interventions IS 'Apoyos que el docente registró para cada estudiante.';
