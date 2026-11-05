@@ -100,6 +100,19 @@ La base de datos de FairTeam está desplegada en Render mediante un servicio Pos
 
 Las credenciales y los datos privados de conexión se administran mediante variables de entorno. No deben publicarse en este repositorio.
 
+## Seguridad y pruebas
+
+El aislamiento por docente se explica en [docs/row-level-security.md](docs/row-level-security.md). Dos scripts lo comprueban y GitHub Actions los ejecuta en PostgreSQL 16 y 17:
+
+```bash
+psql -v ON_ERROR_STOP=1 -d fairteam_db -f scripts/verify_rls.sql
+psql -v ON_ERROR_STOP=1 -d fairteam_db -f tests/isolation_test.sql
+```
+
+## Cambiar de base de datos
+
+Para pasar a otra base en Render (copiar datos y configurar el backend) sigue [docs/migrating-database.md](docs/migrating-database.md). Un `pg_dump` directo falla por `FORCE ROW LEVEL SECURITY`; `scripts/copy_database.sh` lo resuelve.
+
 ## Decisiones de arquitectura
 
 La base de datos no implementa patrones OO como Factory o Decorator. Su responsabilidad es persistencia relacional: claves foráneas, restricciones, índices, migraciones versionadas e idempotentes y Row Level Security para aislar los datos por docente. La aplicación sigue el límite `Frontend → API backend → PostgreSQL`; el navegador nunca se conecta directamente a la base. Flyway, desde el backend, es el mecanismo que aplica los cambios de esquema.
