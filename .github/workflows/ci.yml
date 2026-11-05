@@ -1,0 +1,54 @@
+name: Database checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  postgres:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        postgres: ["16", "17"]
+    services:
+      postgres:
+        image: postgres:${{ matrix.postgres }}
+        env:
+          POSTGRES_USER: fairteam
+          POSTGRES_PASSWORD: fairteam
+          POSTGRES_DB: postgres
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U fairteam"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      PGHOST: localhost
+      PGUSER: fairteam
+      PGPASSWORD: fairteam
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install a recent psql client
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -yq postgresql-common
+          sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh -y
+          sudo apt-get install -yq postgresql-client-17
+      - name: Build schema and migrations
+        run: scripts/setup_local.sh fairteam_ci
+      - name: Verify row level security
+        run: psql -v ON_ERROR_STOP=1 -d fairteam_ci -f scripts/verify_rls.sql
+      - name: Teacher isolation test
+        run: psql -v ON_ERROR_STOP=1 -d fairteam_ci -f tests/isolation_test.sql
+      - name: Demo seed and report queries
+        run: |
+          psql -v ON_ERROR_STOP=1 -d fairteam_ci -c "INSERT INTO teacher_users (full_name, email, password_hash) VALUES ('CI', 'ci@fairteam.test', 'x')"
+          psql -v ON_ERROR_STOP=1 -v teacher_email="'ci@fairteam.test'" -d fairteam_ci -f seeds/demo_course.sql
+          for query in queries/*.sql; do
+            PGOPTIONS="-c app.teacher_id=1" psql -v ON_ERROR_STOP=1 -d fairteam_ci -f "$query" > /dev/null
+          done
+      - name: Copy to a new database
+        run: |
+          createdb fairteam_copy
+          scripts/copy_database.sh "postgresql://fairteam:fairteam@localhost/fairteam_ci" \
+                                   "postgresql://fairteam:fairteam@localhost/fairteam_copy"
