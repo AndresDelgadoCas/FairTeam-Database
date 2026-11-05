@@ -51,6 +51,20 @@ Trabajos asignados por el docente.
 | max_score | numeric(10,2) | no | 5.00 |  |
 | created_at | timestamp without time zone | no | CURRENT_TIMESTAMP |  |
 
+## attendance_records
+
+Asistencia por clase: presente, falta, tarde o excusa.
+
+| Columna | Tipo | Nulo | Por defecto | Referencia |
+| --- | --- | --- | --- | --- |
+| id | bigint | no | nextval('attendance_records_id_seq') |  |
+| teacher_id | bigint | no |  | teacher_users.id |
+| course_id | bigint | no |  | courses.id |
+| student_id | bigint | no |  | students.id |
+| session_date | date | no |  |  |
+| status | character varying(10) | no |  |  |
+| updated_at | timestamp without time zone | no | CURRENT_TIMESTAMP |  |
+
 ## course_grading_schemes
 
 Pesos de los cortes de un curso (ej. 30/30/40) para el simulador.
@@ -178,6 +192,20 @@ Franjas en que el estudiante puede trabajar en equipo.
 | start_time | time without time zone | no |  |  |
 | end_time | time without time zone | no |  |  |
 | teacher_id | bigint | sí |  | teacher_users.id |
+
+## student_interventions
+
+Apoyos que el docente registró para cada estudiante.
+
+| Columna | Tipo | Nulo | Por defecto | Referencia |
+| --- | --- | --- | --- | --- |
+| id | bigint | no | nextval('student_interventions_id_seq') |  |
+| teacher_id | bigint | no |  | teacher_users.id |
+| course_id | bigint | no |  | courses.id |
+| student_id | bigint | no |  | students.id |
+| kind | character varying(20) | no |  |  |
+| note | character varying(500) | no | '' |  |
+| created_at | timestamp without time zone | no | CURRENT_TIMESTAMP |  |
 
 ## student_project_preferences
 
