@@ -75,6 +75,15 @@ scripts/setup_local.sh fairteam_db
 
 **Importante:** no ejecutes `schema.sql` ni los archivos de migración manualmente sobre producción. En una base existente, deja que el backend ejecute Flyway; `schema.sql` solo prepara una base nueva.
 
+## Datos de demostración y consultas
+
+- `seeds/demo_course.sql`: crea un curso ficticio con 8 estudiantes, 3 asignaturas y 3 cortes para un docente ya registrado. Se puede ejecutar varias veces sin duplicar datos.
+- `queries/`: resumen por curso, estudiantes que necesitan apoyo, distribución de notas, asignaturas más difíciles, tendencia por corte y notas faltantes. Ver [queries/README.md](queries/README.md).
+
+```bash
+psql -v teacher_email="'docente@ejemplo.edu'" -d fairteam_db -f seeds/demo_course.sql
+```
+
 ## Integración con el backend
 
 La base de datos se conecta al backend de FairTeam desarrollado con Spring Boot. El backend utiliza Spring Data JPA e Hibernate para acceder a la información.
