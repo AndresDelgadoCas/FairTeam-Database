@@ -67,6 +67,12 @@ El backend completa este esquema al arrancar mediante Flyway: crea las tablas de
 
 4. Ejecutar el script solo para preparar el esquema académico inicial de una base nueva. Después, configura el backend para conectarse; Flyway aplicará las migraciones restantes al iniciar.
 
+Para desarrollo local también puedes construir todo de una vez (esquema y migraciones en orden):
+
+```bash
+scripts/setup_local.sh fairteam_db
+```
+
 **Importante:** no ejecutes `schema.sql` ni los archivos de migración manualmente sobre producción. En una base existente, deja que el backend ejecute Flyway; `schema.sql` solo prepara una base nueva.
 
 ## Integración con el backend
