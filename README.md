@@ -40,6 +40,7 @@ El modelo reúne las tablas académicas base y las que agregó Flyway (`courses`
 | `attendance_records` | Asistencia por clase: presente, falta, tarde o excusa (migración V8). |
 | `student_interventions` | Apoyos registrados por el docente para cada estudiante (migración V8). |
 | `course_grading_schemes` | Cortes y pesos de cada curso (ej. 30/30/40) para el simulador de notas; aislada por docente (migración V7). |
+| `grade_item_weights` | Columnas de cada corte con su orden y porcentaje; `courses.max_grade` guarda la escala del curso (migración V9). |
 
 ## Archivo principal
 

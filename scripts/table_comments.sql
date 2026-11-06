@@ -23,3 +23,5 @@ COMMENT ON TABLE rubric_criteria IS 'Criterios y pesos de cada rúbrica.';
 COMMENT ON TABLE ai_evaluations IS 'Evaluaciones sugeridas por IA que el docente revisa.';
 COMMENT ON TABLE attendance_records IS 'Asistencia por clase: presente, falta, tarde o excusa.';
 COMMENT ON TABLE student_interventions IS 'Apoyos que el docente registró para cada estudiante.';
+COMMENT ON TABLE grade_item_weights IS 'Columnas de cada corte con su orden y porcentaje dentro del corte.';
+COMMENT ON COLUMN courses.max_grade IS 'Nota máxima de la escala del curso (5, 10, 100...). Las notas se guardan de 0 a 5.';

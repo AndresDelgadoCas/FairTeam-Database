@@ -105,6 +105,21 @@ Cursos o grupos de cada docente.
 | period | character varying(40) | sí |  |  |
 | description | character varying(500) | sí |  |  |
 | created_at | timestamp without time zone | no | CURRENT_TIMESTAMP |  |
+| max_grade | numeric(7,2) | no | 5 |  |
+
+## grade_item_weights
+
+Columnas de cada corte con su orden y porcentaje dentro del corte.
+
+| Columna | Tipo | Nulo | Por defecto | Referencia |
+| --- | --- | --- | --- | --- |
+| id | bigint | no | nextval('grade_item_weights_id_seq') |  |
+| teacher_id | bigint | no |  | teacher_users.id |
+| course_id | bigint | no |  | courses.id |
+| period | character varying(20) | no |  |  |
+| subject_id | bigint | no |  | subjects.id |
+| weight | numeric(5,2) | sí |  |  |
+| position | integer | no | 0 |  |
 
 ## grades
 
@@ -115,7 +130,7 @@ Notas de 0,0 a 5,0 por estudiante, asignatura y corte.
 | id | bigint | no | nextval('grades_id_seq') |  |
 | student_id | bigint | no |  | students.id |
 | subject_id | bigint | no |  | subjects.id |
-| grade | numeric(3,2) | no |  |  |
+| grade | numeric(6,4) | no |  |  |
 | period | character varying(20) | no |  |  |
 | teacher_id | bigint | sí |  | teacher_users.id |
 | course_id | bigint | sí |  | courses.id |
