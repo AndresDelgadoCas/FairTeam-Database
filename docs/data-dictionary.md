@@ -93,6 +93,65 @@ Material de clase subido por el docente para generar talleres.
 | content | bytea | no |  |  |
 | created_at | timestamp without time zone | no | CURRENT_TIMESTAMP |  |
 
+## course_rubric_comments
+
+Comentario del docente a un estudiante sobre una rúbrica.
+
+| Columna | Tipo | Nulo | Por defecto | Referencia |
+| --- | --- | --- | --- | --- |
+| id | bigint | no | nextval('course_rubric_comments_id_seq') |  |
+| teacher_id | bigint | no |  | teacher_users.id |
+| rubric_id | bigint | no |  | course_rubrics.id |
+| student_id | bigint | no |  | students.id |
+| comment | character varying(1000) | no |  |  |
+
+## course_rubric_criteria
+
+Criterios de una rúbrica con su peso y la descripción de los cuatro niveles.
+
+| Columna | Tipo | Nulo | Por defecto | Referencia |
+| --- | --- | --- | --- | --- |
+| id | bigint | no | nextval('course_rubric_criteria_id_seq') |  |
+| teacher_id | bigint | no |  | teacher_users.id |
+| rubric_id | bigint | no |  | course_rubrics.id |
+| position | integer | no | 0 |  |
+| name | character varying(150) | no |  |  |
+| description | text | sí |  |  |
+| weight | numeric(5,2) | no |  |  |
+| level_excellent | text | no |  |  |
+| level_good | text | no |  |  |
+| level_basic | text | no |  |  |
+| level_insufficient | text | no |  |  |
+
+## course_rubric_scores
+
+Nivel alcanzado por cada estudiante en cada criterio (0 Excelente a 3 Insuficiente).
+
+| Columna | Tipo | Nulo | Por defecto | Referencia |
+| --- | --- | --- | --- | --- |
+| id | bigint | no | nextval('course_rubric_scores_id_seq') |  |
+| teacher_id | bigint | no |  | teacher_users.id |
+| rubric_id | bigint | no |  | course_rubrics.id |
+| criterion_id | bigint | no |  | course_rubric_criteria.id |
+| student_id | bigint | no |  | students.id |
+| level | smallint | no |  |  |
+
+## course_rubrics
+
+Rúbricas analíticas de un curso y la columna del libro de notas donde se publicaron.
+
+| Columna | Tipo | Nulo | Por defecto | Referencia |
+| --- | --- | --- | --- | --- |
+| id | bigint | no | nextval('course_rubrics_id_seq') |  |
+| teacher_id | bigint | no |  | teacher_users.id |
+| course_id | bigint | no |  | courses.id |
+| title | character varying(150) | no |  |  |
+| description | text | sí |  |  |
+| period | character varying(20) | sí |  |  |
+| subject_id | bigint | sí |  | subjects.id |
+| created_at | timestamp without time zone | no | now() |  |
+| updated_at | timestamp without time zone | no | now() |  |
+
 ## courses
 
 Cursos o grupos de cada docente.

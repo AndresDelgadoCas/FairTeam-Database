@@ -25,3 +25,7 @@ COMMENT ON TABLE attendance_records IS 'Asistencia por clase: presente, falta, t
 COMMENT ON TABLE student_interventions IS 'Apoyos que el docente registró para cada estudiante.';
 COMMENT ON TABLE grade_item_weights IS 'Columnas de cada corte con su orden y porcentaje dentro del corte.';
 COMMENT ON COLUMN courses.max_grade IS 'Nota máxima de la escala del curso (5, 10, 100...). Las notas se guardan de 0 a 5.';
+COMMENT ON TABLE course_rubrics IS 'Rúbricas analíticas de un curso y la columna del libro de notas donde se publicaron.';
+COMMENT ON TABLE course_rubric_criteria IS 'Criterios de una rúbrica con su peso y la descripción de los cuatro niveles.';
+COMMENT ON TABLE course_rubric_scores IS 'Nivel alcanzado por cada estudiante en cada criterio (0 Excelente a 3 Insuficiente).';
+COMMENT ON TABLE course_rubric_comments IS 'Comentario del docente a un estudiante sobre una rúbrica.';
