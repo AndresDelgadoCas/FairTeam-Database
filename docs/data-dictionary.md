@@ -348,6 +348,16 @@ Asignaturas que califica el docente.
 | name | character varying(120) | no |  |  |
 | teacher_id | bigint | sí |  | teacher_users.id |
 
+## teacher_guide_progress
+
+Avance de cada docente en la guía "Primeros pasos" (pasos hechos y saltados, si está abierta o minimizada).
+
+| Columna | Tipo | Nulo | Por defecto | Referencia |
+| --- | --- | --- | --- | --- |
+| teacher_id | bigint | no |  | teacher_users.id |
+| state | jsonb | no |  |  |
+| updated_at | timestamp without time zone | no | now() |  |
+
 ## teacher_users
 
 Cuentas de docentes. La contraseña se guarda como hash BCrypt.

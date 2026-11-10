@@ -43,6 +43,7 @@ El modelo reúne las tablas académicas base y las que agregó Flyway (`courses`
 | `grade_item_weights` | Columnas de cada corte con su orden y porcentaje; `courses.max_grade` guarda la escala del curso (migración V9). |
 | `course_rubrics`, `course_rubric_criteria`, `course_rubric_scores`, `course_rubric_comments` | Rúbricas analíticas, niveles por estudiante y comentarios (migración V10). |
 | `course_activities` | Talleres, quizzes y actividades a la medida guardados en el servidor; las rúbricas se enlazan con `activity_id` (migración V11). |
+| `teacher_guide_progress` | Avance de cada docente en la guía "Primeros pasos", para que siga a la cuenta en cualquier equipo (migración V12). |
 
 ## Archivo principal
 

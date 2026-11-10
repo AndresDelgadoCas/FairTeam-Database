@@ -29,4 +29,5 @@ COMMENT ON TABLE course_rubrics IS 'Rúbricas analíticas de un curso y la colum
 COMMENT ON TABLE course_rubric_criteria IS 'Criterios de una rúbrica con su peso y la descripción de los cuatro niveles.';
 COMMENT ON TABLE course_rubric_scores IS 'Nivel alcanzado por cada estudiante en cada criterio (0 Excelente a 3 Insuficiente).';
 COMMENT ON TABLE course_rubric_comments IS 'Comentario del docente a un estudiante sobre una rúbrica.';
+COMMENT ON TABLE teacher_guide_progress IS 'Avance de cada docente en la guía Primeros pasos; una fila por cuenta.';
 COMMENT ON TABLE course_activities IS 'Talleres, quizzes y actividades a la medida guardados por curso, con su tema y contenido.';
