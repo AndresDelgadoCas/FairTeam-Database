@@ -65,6 +65,24 @@ Asistencia por clase: presente, falta, tarde o excusa.
 | status | character varying(10) | no |  |  |
 | updated_at | timestamp without time zone | no | CURRENT_TIMESTAMP |  |
 
+## course_activities
+
+Talleres, quizzes y actividades a la medida guardados por curso, con su tema y contenido.
+
+| Columna | Tipo | Nulo | Por defecto | Referencia |
+| --- | --- | --- | --- | --- |
+| id | bigint | no | nextval('course_activities_id_seq') |  |
+| teacher_id | bigint | no |  | teacher_users.id |
+| course_id | bigint | no |  | courses.id |
+| kind | character varying(20) | no |  |  |
+| title | character varying(200) | no |  |  |
+| topic | character varying(150) | sí |  |  |
+| subject_id | bigint | sí |  | subjects.id |
+| target_level | character varying(10) | sí |  |  |
+| content | jsonb | no |  |  |
+| created_at | timestamp without time zone | no | now() |  |
+| updated_at | timestamp without time zone | no | now() |  |
+
 ## course_grading_schemes
 
 Pesos de los cortes de un curso (ej. 30/30/40) para el simulador.
@@ -151,6 +169,7 @@ Rúbricas analíticas de un curso y la columna del libro de notas donde se publi
 | subject_id | bigint | sí |  | subjects.id |
 | created_at | timestamp without time zone | no | now() |  |
 | updated_at | timestamp without time zone | no | now() |  |
+| activity_id | bigint | sí |  | course_activities.id |
 
 ## courses
 

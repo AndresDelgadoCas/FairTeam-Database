@@ -42,6 +42,7 @@ El modelo reúne las tablas académicas base y las que agregó Flyway (`courses`
 | `course_grading_schemes` | Cortes y pesos de cada curso (ej. 30/30/40) para el simulador de notas; aislada por docente (migración V7). |
 | `grade_item_weights` | Columnas de cada corte con su orden y porcentaje; `courses.max_grade` guarda la escala del curso (migración V9). |
 | `course_rubrics`, `course_rubric_criteria`, `course_rubric_scores`, `course_rubric_comments` | Rúbricas analíticas, niveles por estudiante y comentarios (migración V10). |
+| `course_activities` | Talleres, quizzes y actividades a la medida guardados en el servidor; las rúbricas se enlazan con `activity_id` (migración V11). |
 
 ## Archivo principal
 
